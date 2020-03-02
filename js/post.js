@@ -5,7 +5,7 @@ $(document).ready(function () {
   var tocT = navHeight + (toc.offset().top - main.offset().top);
   var tocLimMin = main.offset().top - navHeight;
   var tocLimMax = $("#comments").offset().top - navHeight;
-  var loadToc = function () {
+  $(window).scroll(function () {
     var scroH = document.body.scrollTop + document.documentElement.scrollTop;
     if (tocLimMin <= scroH && scroH <= tocLimMax) {
       toc.css({
@@ -19,12 +19,9 @@ $(document).ready(function () {
         "top": ''
       })
     } else if (scroH > tocLimMax) {
-      /* 滚动到页面底部时隐藏侧边目录，有bug */
-      /* toc.css("display", "none") */
+      toc.css("display", "none")
     }
-  }
-  loadToc();
-  $(window).scroll(loadToc);
+  });
   tocbot.init({
     tocSelector: '#tocbot',
     contentSelector: '.post-content',
