@@ -4,37 +4,38 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/p1.png">
-  <link rel="icon" type="image/png" href="../../../../img/p1.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="../img/p1.png">
+  <link rel="icon" type="image/png" href="../img/p1.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="author" content="Balrog">
   
-    <meta name="description" content="串口、COM口、UART口, TTL、RS-232、RS-485区别详解">
+    <meta name="description" content="「世上尽是一些怎么做也做不好的事。那还不如就喝酒睡觉。」
+《风云篇》第二章＼杨提督的方舟舰队">
   
   
-    <meta name="keywords" content="学习,资料," />
+    <meta name="keywords" content="个人,感悟," />
   
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <title>串口、COM口、UART口, TTL、RS-232、RS-485区别详解 ~ Balrogの记事簿</title>
-  <link rel="stylesheet" href="../../../../lib/font-awesome/css/all.min.css"  >
-<link rel="stylesheet" href="../../../../lib/bootstrap/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="../../../../lib/mdbootstrap/css/mdb.min.css"  >
-<link rel="stylesheet" href="../../../../lib/github-markdown/github-markdown.min.css"  >
+  <title>随笔（四） ~ Balrogの记事簿</title>
+  <link rel="stylesheet" href="../lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="../lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="../lib/github-markdown/github-markdown.min.css"  >
 
-<link rel="stylesheet" href="../../../../at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
-
-
-  <link rel="stylesheet" href="../../../../lib/prettify/tomorrow-night-eighties.min.css"  >
+<link rel="stylesheet" href="../at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
-  <link rel="stylesheet" href="../../../../lib/fancybox/jquery.fancybox.min.css"  >
+  <link rel="stylesheet" href="../lib/prettify/tomorrow-night-eighties.min.css"  >
 
-<link rel="stylesheet" href="../../../../css/main.css"  >
-<script src="../../../../lib/jquery/jquery.min.js" ></script>
+
+  <link rel="stylesheet" href="../lib/fancybox/jquery.fancybox.min.css"  >
+
+<link rel="stylesheet" href="../css/main.css"  >
+<script src="../lib/jquery/jquery.min.js" ></script>
   <style type="text/css">
     .banner-bg {
       
@@ -53,7 +54,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="../../../../index.html">&nbsp;<strong>Balrogの记事簿</strong>&nbsp;</a>
+       href="../index.html">&nbsp;<strong>Balrogの记事簿</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -70,7 +71,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../index.html">首页</a>
+            <a class="nav-link" href="../index.html">首页</a>
           </li>
         
           
@@ -78,7 +79,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../archives/">归档</a>
+            <a class="nav-link" href="../archives/">归档</a>
           </li>
         
           
@@ -86,7 +87,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../categories/">分类</a>
+            <a class="nav-link" href="../categories/">分类</a>
           </li>
         
           
@@ -94,7 +95,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../tags/">标签</a>
+            <a class="nav-link" href="../tags/">标签</a>
           </li>
         
           
@@ -102,7 +103,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../about/">关于</a>
+            <a class="nav-link" href="../about/">关于</a>
           </li>
         
         
@@ -129,11 +130,11 @@
               <br>
               <p class="mt-3">
                 <i class="far fa-calendar-alt"></i>
-                <span class="post-date">2020-04-13&nbsp;|&nbsp;</span>
+                <span class="post-date">2020-11-19&nbsp;|&nbsp;</span>
                 <i class="far fa-chart-bar"></i>
-                <span class="post-count">1.2k</span>字&nbsp;|&nbsp;
+                <span class="post-count">355</span>字&nbsp;|&nbsp;
                 <i class="far fa-clock"></i>
-                <span class="post-count">4</span>分钟
+                <span class="post-count">1</span>分钟
                 
                   <span id="busuanzi_container_page_pv" style="display:none">
                     &nbsp;|&nbsp;
@@ -160,40 +161,11 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>串口、COM口、UART口, TTL、RS-232、RS-485区别详解</p>
+            <p>「世上尽是一些怎么做也做不好的事。那还不如就喝酒睡觉。」</p>
+<p>《风云篇》第二章＼杨提督的方舟舰队</p>
 <a id="more"></a>
-<h1 id="串口、COM口、UART口-TTL、RS-232、RS-485区别详解"><a href="#串口、COM口、UART口-TTL、RS-232、RS-485区别详解" class="headerlink" title="串口、COM口、UART口, TTL、RS-232、RS-485区别详解"></a>串口、COM口、UART口, TTL、RS-232、RS-485区别详解</h1><hr>
-<h1 id="串口、COM口、UART口-TTL、RS-232、RS-485区别详解-1"><a href="#串口、COM口、UART口-TTL、RS-232、RS-485区别详解-1" class="headerlink" title="串口、COM口、UART口, TTL、RS-232、RS-485区别详解"></a>串口、COM口、UART口, TTL、RS-232、RS-485区别详解</h1><hr>
-<p>调试时总是会遇到各种各样的接口，各种各样的转换板，似懂非懂的感觉很不爽！</p>
-<h4 id="首先，串口、UART口、COM口、USB口是指的物理接口形式-硬件-。而TTL、RS-232、RS-485是指的电平标准-电信号-。"><a href="#首先，串口、UART口、COM口、USB口是指的物理接口形式-硬件-。而TTL、RS-232、RS-485是指的电平标准-电信号-。" class="headerlink" title="首先，串口、UART口、COM口、USB口是指的物理接口形式(硬件)。而TTL、RS-232、RS-485是指的电平标准(电信号)。"></a>首先，串口、UART口、COM口、USB口是指的物理接口形式(硬件)。而TTL、RS-232、RS-485是指的电平标准(电信号)。</h4><ul>
-<li><p>串口：串口是一个泛称，UART、TTL、RS232、RS485都遵循类似的通信时序协议，因此都被通称为串口。</p>
-</li>
-<li><p>UART接口：通用异步收发器（Universal Asynchronous Receiver/Transmitter)，UART是串口收发的逻辑电路，这部分可以独立成芯片，也可以作为模块嵌入到其他芯片里，单片机、SOC、PC里都会有UART模块。</p>
-</li>
-<li><p>COM口：特指台式计算机或一些电子设备上的D-SUB外形(一种连接器结构，VGA接口的连接器也是D-SUB)的串行通信口，应用了串口通信时序和RS232的逻辑电平。</p>
-</li>
-<li><p>USB口：通用串行总线，和串口完全是两个概念。虽然也是串行方式通信，但由于USB的通信时序和信号电平都和串口完全不同，因此和串口没有任何关系。USB是高速的通信接口，用于PC连接各种外设，U盘、键鼠、移动硬盘、当然也包括“USB转串口”的模块。（USB转串口模块，就是USB接口的UART模块）</p>
-</li>
-</ul>
-<h4 id="TTL，RS232，RS485都是一种逻辑电平的表示方式"><a href="#TTL，RS232，RS485都是一种逻辑电平的表示方式" class="headerlink" title="TTL，RS232，RS485都是一种逻辑电平的表示方式"></a>TTL，RS232，RS485都是一种逻辑电平的表示方式</h4><ul>
-<li><p>TTL：TTL指双极型三极管逻辑电路，市面上很多“USB转TTL”模块，实际上是“USB转TTL电平的串口”模块。这种信号0对应0V，1对应3.3V或者5V。与单片机、SOC的IO电平兼容。不过实际也不一定是TTL电平，因为现在大部分数字逻辑都是CMOS工艺做的，只是沿用了TTL的说法。我们进行串口通信的时候 从单片机直接出来的基本是都 是 TTL 电平。</p>
-</li>
-<li><p>TTL电平：全双工（逻辑1: 2.4V–5V  逻辑0: 0V–0.5V）</p>
-</li>
-</ul>
-<p>1、硬件框图如下，TTL用于两个MCU间通信<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413222700.png" srcset="/img/loading.gif" alt="image"><br>2、‘0’和‘1’表示<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413222806.png" srcset="/img/loading.gif" alt="image"><br>RS232：是电子工业协会(Electronic Industries Association，EIA) 制定的异步传输标准接口，同时对应着电平标准和通信协议（时序），其电平标准：+3V～+15V对应0，-3V～-15V对应1。rs232 的逻辑电平和TTL 不一样但是协议一样。</p>
-<p>RS-232电平：全双工（逻辑1：-15V–5V 逻辑0：+3V–+15V）</p>
-<p>1、硬件框图如下，TTL用于MCU与PC机之间通信<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413222904.png" srcset="/img/loading.gif" alt="image"><br>2、‘0’和‘1’表示<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413222946.png" srcset="/img/loading.gif" alt="image"><br>RS485：RS485是一种串口接口标准，为了长距离传输采用差分方式传输，传输的是差分信号，抗干扰能力比RS232强很多。两线压差为-(2<del>6)V表示0，两线压差为+(2</del>6)V表示1</p>
-<p>RS-485：半双工、（逻辑1：+2V–+6V 逻辑0： -6V—2V）这里的电平指AB 两线间的电压差。</p>
-<p>1、硬件框图如下<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223159.png" srcset="/img/loading.gif" alt="image"><br>2、‘0’和‘1’表示<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223201.png" srcset="/img/loading.gif" alt="image"><br>COM口即串行通讯端口，简称串口。这里区别于USB的“通用串行总线”和硬盘的“SATA”。</p>
-<p>一般我们见到的是两种物理标准。D型9针插头，和4针杜邦头两种。</p>
-<p>这是常见的4针串口，在电路板上常见，经常上边还带有杜邦插针。还有时候有第五根针，3.3V电源端。</p>
-<p>由于是预留在电路板上的，协议可以有很多种，要看具体设备。<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223318.png" srcset="/img/loading.gif" alt="image">    </p>
-<h4 id="嵌入式里面说的串口，一般是指UART口，-但是我们经常搞不清楚它和COM口的区别-以及RS232-TTL等关系-实际上UART-COM指的物理接口形式-硬件-而TTL、RS-232是指的电平标准-电信号"><a href="#嵌入式里面说的串口，一般是指UART口，-但是我们经常搞不清楚它和COM口的区别-以及RS232-TTL等关系-实际上UART-COM指的物理接口形式-硬件-而TTL、RS-232是指的电平标准-电信号" class="headerlink" title="嵌入式里面说的串口，一般是指UART口， 但是我们经常搞不清楚它和COM口的区别, 以及RS232, TTL等关系, 实际上UART,COM指的物理接口形式(硬件), 而TTL、RS-232是指的电平标准(电信号)."></a>嵌入式里面说的串口，一般是指UART口， 但是我们经常搞不清楚它和COM口的区别, 以及RS232, TTL等关系, 实际上UART,COM指的物理接口形式(硬件), 而TTL、RS-232是指的电平标准(电信号).</h4><p>UART有4个pin（VCC, GND, RX, TX）, 用的TTL电平, 低电平为0(0V)，高电平为1（3.3V或以上）。<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223319.png" srcset="/img/loading.gif" alt="image"><br>下面这个就是D型9针串口(通俗说法)。在台式电脑后边都可以看到。</p>
-<p>记住，这种接口的协议只有两种：RS-232和RS-485。不会是TTL电平的(除非特殊应用)。</p>
-<p>9针串口的定义可以参考这里：<a href="http://wenku.baidu.com/view/5c170c6925c52cc58bd6be6e.html" target="_blank" rel="noopener">http://wenku.baidu.com/view/5c170c6925c52cc58bd6be6e.html</a></p>
-<p>我们一般只接出RXD TXD两针，外加GND。<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223320.png" srcset="/img/loading.gif" alt="image"><br>下图是个USB转TTL串口的小板，可以用USB扩展出一个串口。芯片为PL2303HX。<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223322.jpg" srcset="/img/loading.gif" alt="image"><br>网上经常混淆各种串口，但是这个确实是可以给STC单片机下载程序的。</p>
-<p>这是另一种，CP2102芯片的，也是USB转TTL串口。据说比PL2303的好，实际使用中没感觉出来。这个小板就多了+3.3V电源端，以适应不同的目标电路。<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223323.jpg" srcset="/img/loading.gif" alt="image"><br>下图为USB转RS-232串口：<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/20200413223346.png" srcset="/img/loading.gif" alt="image"></p>
+<h1 id="随笔（四）"><a href="#随笔（四）" class="headerlink" title="随笔（四）"></a>随笔（四）</h1><hr>
+<p>追寻生活的意义大概也就只能更加感性吧，一旦沦为理性的奴隶大概也就只能停滞不前。<br>感性却总给人一种自我欺骗的感觉，用生活掩盖内心的悲伤，追寻梦想和人生的意义难道就是不应该的？错误的？<br>在纯粹的科学过程中解释感性生物的思想或许本身就是错误的。但是为什么还是有能人异士能够在这种凄惨的轮回中走出来？难道他们就意识不到自己内心深处对自己的否定吗？还是说他们单纯扼杀了它或者说从头到尾就没有？<br>它到底是什么？正义？善良？道德？人到底是依靠什么维持个体思维的加固的？在这个良知稀缺的时代，人类怕是会走上一条绝路。<br>天人五衰，理性的思考带来感性多崩溃，维持人这一个体的精神护罩破碎了，人也就疯了吧？<br>我开始将追寻意义发在求知上，但求知过后呢？或许我从头到尾就没有逃离这一精神漩涡。有的只是浪费生命罢了<br><img src="https://balrog.oss-cn-shenzhen.aliyuncs.com/img/%E8%B5%B0%E5%90%91%E8%BF%9C%E6%96%B9.jpg" srcset="/img/loading.gif" alt="">  </p>
 
             <hr>
           </div>
@@ -204,7 +176,7 @@
                 <span>
                   <i class="iconfont icon-inbox"></i>
                   
-                    <a class="hover-with-bg" href="/categories/%E8%B5%84%E6%96%99">资料</a>
+                    <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94">随笔</a>
                     &nbsp;
                   
                 </span>
@@ -212,16 +184,16 @@
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0">学习</a>
+                  <a class="hover-with-bg" href="/tags/%E4%B8%AA%E4%BA%BA">个人</a>
                 
-                  <a class="hover-with-bg" href="/tags/%E8%B5%84%E6%96%99">资料</a>
+                  <a class="hover-with-bg" href="/tags/%E6%84%9F%E6%82%9F">感悟</a>
                 
               </span>
             </div>
             
               <div id="post-note">
-                <div><strong>本文作者：</strong><a href="../../../../index.html">Balrog</a></div>
-                <div><strong>本文链接：</strong><a href="http://balrog-chou.github.io/2020/04/13/%E8%B5%84%E6%96%992/">http://balrog-chou.github.io/2020/04/13/%E8%B5%84%E6%96%992/</a></div>
+                <div><strong>本文作者：</strong><a href="../index.html">Balrog</a></div>
+                <div><strong>本文链接：</strong><a href="https://www.balrog.xyz/posts/39452ce3.html">https://www.balrog.xyz/posts/39452ce3.html</a></div>
                 <div><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</div>
               </div>
             
@@ -229,14 +201,14 @@
               <div id="post-nav" class="container">
                   <div class="row">
                     
-                      <a href="../../../11/19/%E9%9A%8F%E7%AC%944/" id="post-nav-prev" class="col">
+                      <a href="56dbe9a4.html" id="post-nav-prev" class="col">
                         <i class="fas fa-arrow-left"></i>
-                        <span class="post-nav-title">随笔（四）</span>
+                        <span class="post-nav-title">随笔（五）</span>
                       </a>
                     
                     
-                      <a href="../%E8%B5%84%E6%96%991/" id="post-nav-next" class="col">
-                        <span class="post-nav-title">串口：RS233-RS485-RS422几种总线对比</span>
+                      <a href="ecb17eb7.html" id="post-nav-next" class="col">
+                        <span class="post-nav-title">串口、COM口、UART口, TTL、RS-232、RS-485区别详解</span>
                         <i class="fas fa-arrow-right"></i>
                       </a>
                     
@@ -284,7 +256,7 @@
   <div class="sidebar-overlay"></div>
   <div class="sidebar-intrude">
     <div class="sidebar-avatar">
-      <img src="../../../../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" srcset="../../../../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" alt="avatar"/>
+      <img src="../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" srcset="../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" alt="avatar"/>
     </div>
     <div class="text-center sidebar-about">
       <p class="h3 sidebar-author">Balrogの记事簿</p>
@@ -392,22 +364,22 @@
 </footer>
 </div>
 <!-- SCRIPTS -->
-<script src="../../../../lib/popper/popper.min.js" ></script>
-<script src="../../../../lib/bootstrap/js/bootstrap.min.js" ></script>
-<script src="../../../../lib/mdbootstrap/js/mdb.min.js" ></script>
-<script src="../../../../js/main.js" ></script>
+<script src="../lib/popper/popper.min.js" ></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="../lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="../js/main.js" ></script>
 
-  <script src="../../../../js/lazyload.js" ></script>
+  <script src="../js/lazyload.js" ></script>
 
 
   
-    <script src="../../../../lib/tocbot/tocbot.min.js" ></script>
+    <script src="../lib/tocbot/tocbot.min.js" ></script>
   
-  <script src="../../../../js/post.js" ></script>
+  <script src="../js/post.js" ></script>
 
 <!-- Plugins -->
 
-  <script src="../../../../lib/prettify/prettify.min.js" ></script>
+  <script src="../lib/prettify/prettify.min.js" ></script>
   <script type="text/javascript">
     $(document).ready(function () {
       $('pre').addClass('prettyprint  linenums');
@@ -416,12 +388,12 @@
   </script>
 
 
-  <script src="../../../../lib/typed/typed.min.js" ></script>
+  <script src="../lib/typed/typed.min.js" ></script>
   <script type="text/javascript">
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "串口、COM口、UART口, TTL、RS-232、RS-485区别详解&nbsp;",
+        "随笔（四）&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -435,7 +407,7 @@
   </script>
 
 
-  <script src="../../../../lib/anchor/anchor.min.js" ></script>
+  <script src="../lib/anchor/anchor.min.js" ></script>
   <script type="text/javascript">
     anchors.options = {
       placement: "right",
@@ -451,9 +423,9 @@
   </script>
 
 
-  <script src="../../../../js/local-search.js" ></script>
+  <script src="../js/local-search.js" ></script>
   <script type="text/javascript">
-    var path = "../../../../local-search.xml";
+    var path = "../local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
       getSearchFile(path);
@@ -462,7 +434,7 @@
   </script>
 
 
-  <script src="../../../../lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script src="../lib/fancybox/jquery.fancybox.min.js" ></script>
   <script type="text/javascript">
   /* Fancybox */
   var setupFancybox = function () {
@@ -531,7 +503,7 @@
   </script>
 
 
-  <script async src="../../../../cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" ></script>
+  <script async src="../cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" ></script>
   
     <script>
       /* 不蒜子计数初始值纠正 */

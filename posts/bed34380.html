@@ -4,38 +4,37 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="../../../../img/p1.png">
-  <link rel="icon" type="image/png" href="../../../../img/p1.jpg">
+  <link rel="apple-touch-icon" sizes="76x76" href="../img/p1.png">
+  <link rel="icon" type="image/png" href="../img/p1.jpg">
   <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="author" content="Balrog">
   
-    <meta name="description" content="「命运就好像是一个张牙舞爪的老魔女。」
-《飞翔篇》第三章＼访问者">
+    <meta name="description" content="RS233-RS485-RS422几种总线对比">
   
   
-    <meta name="keywords" content="个人,感悟," />
+    <meta name="keywords" content="学习,资料," />
   
   <meta http-equiv="Cache-Control" content="no-transform" />
   <meta http-equiv="Cache-Control" content="no-siteapp" />
-  <title>随笔（六） ~ Balrogの记事簿</title>
-  <link rel="stylesheet" href="../../../../lib/font-awesome/css/all.min.css"  >
-<link rel="stylesheet" href="../../../../lib/bootstrap/css/bootstrap.min.css"  >
-<link rel="stylesheet" href="../../../../lib/mdbootstrap/css/mdb.min.css"  >
-<link rel="stylesheet" href="../../../../lib/github-markdown/github-markdown.min.css"  >
+  <title>串口：RS233-RS485-RS422几种总线对比 ~ Balrogの记事簿</title>
+  <link rel="stylesheet" href="../lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="../lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="../lib/github-markdown/github-markdown.min.css"  >
 
-<link rel="stylesheet" href="../../../../at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
-
-
-  <link rel="stylesheet" href="../../../../lib/prettify/tomorrow-night-eighties.min.css"  >
+<link rel="stylesheet" href="../at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
 
 
-  <link rel="stylesheet" href="../../../../lib/fancybox/jquery.fancybox.min.css"  >
+  <link rel="stylesheet" href="../lib/prettify/tomorrow-night-eighties.min.css"  >
 
-<link rel="stylesheet" href="../../../../css/main.css"  >
-<script src="../../../../lib/jquery/jquery.min.js" ></script>
+
+  <link rel="stylesheet" href="../lib/fancybox/jquery.fancybox.min.css"  >
+
+<link rel="stylesheet" href="../css/main.css"  >
+<script src="../lib/jquery/jquery.min.js" ></script>
   <style type="text/css">
     .banner-bg {
       
@@ -54,7 +53,7 @@
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
-       href="../../../../index.html">&nbsp;<strong>Balrogの记事簿</strong>&nbsp;</a>
+       href="../index.html">&nbsp;<strong>Balrogの记事簿</strong>&nbsp;</a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
             data-target="#navbarSupportedContent"
@@ -71,7 +70,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../index.html">首页</a>
+            <a class="nav-link" href="../index.html">首页</a>
           </li>
         
           
@@ -79,7 +78,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../archives/">归档</a>
+            <a class="nav-link" href="../archives/">归档</a>
           </li>
         
           
@@ -87,7 +86,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../categories/">分类</a>
+            <a class="nav-link" href="../categories/">分类</a>
           </li>
         
           
@@ -95,7 +94,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../tags/">标签</a>
+            <a class="nav-link" href="../tags/">标签</a>
           </li>
         
           
@@ -103,7 +102,7 @@
           
           
           <li class="nav-item">
-            <a class="nav-link" href="../../../../about/">关于</a>
+            <a class="nav-link" href="../about/">关于</a>
           </li>
         
         
@@ -130,11 +129,11 @@
               <br>
               <p class="mt-3">
                 <i class="far fa-calendar-alt"></i>
-                <span class="post-date">2020-11-26&nbsp;|&nbsp;</span>
+                <span class="post-date">2020-04-13&nbsp;|&nbsp;</span>
                 <i class="far fa-chart-bar"></i>
-                <span class="post-count">193</span>字&nbsp;|&nbsp;
+                <span class="post-count">713</span>字&nbsp;|&nbsp;
                 <i class="far fa-clock"></i>
-                <span class="post-count">1</span>分钟
+                <span class="post-count">2</span>分钟
                 
                   <span id="busuanzi_container_page_pv" style="display:none">
                     &nbsp;|&nbsp;
@@ -161,11 +160,25 @@
       <div class="py-5 z-depth-3" id="board">
         <div class="post-content mx-auto" id="post">
           <div class="markdown-body">
-            <p>「命运就好像是一个张牙舞爪的老魔女。」</p>
-<p>《飞翔篇》第三章＼访问者</p>
+            <p>RS233-RS485-RS422几种总线对比</p>
 <a id="more"></a>
-<h1 id="随笔（六）"><a href="#随笔（六）" class="headerlink" title="随笔（六）"></a>随笔（六）</h1><hr>
-<p>Part.x<br>人们因为有价值之物（荣耀）的稀缺而彼此斗争，又出于对在这种残酷斗争中暴死的恐惧而相互立约、走向联合，建立起一个人人平等的利维坦国家或契约论国家。<br>我们的社会始终处在“对荣耀的渴望”和“对暴死的恐惧”的左右摇摆之中，稍有放纵便有可能再次堕入无序的兽斗。<br>战争，即是这种斗争的最高表现形式。因此，谁能够驯服自己胸膛中“残酷的猛兽”，谁就能够赢得未来。历史终结于“没有胸膛的人”。<br><img src="https://s3.ax1x.com/2020/11/20/DMlup4.jpg" srcset="/img/loading.gif" alt=""> </p>
+<h1 id="RS233-RS485-RS422几种总线对比"><a href="#RS233-RS485-RS422几种总线对比" class="headerlink" title="RS233-RS485-RS422几种总线对比"></a>RS233-RS485-RS422几种总线对比</h1><ul>
+<li><h4 id="RS-232串行接口标准"><a href="#RS-232串行接口标准" class="headerlink" title="RS-232串行接口标准"></a>RS-232串行接口标准</h4></li>
+</ul>
+<hr>
+<p>目前RS-232是PC机与通信工业中应用最广泛的一种串行接口。RS-232被定义为一种在低速率串行通讯中增加通讯距离的单端标准。RS-232采取不平衡传输方式，即所谓单端通讯。</p>
+<p>收、发端的数据信号是相对于信号地，如从DTE设备发出的数据在使用DB25连接器时是2脚相对7脚（信号地）的电平，DB25各引脚定义参见图1。典型的RS-232信号在正负电平之间摆动，在发送数据时，发送端驱动器输出正电平在+5～+15V，负电平在-5～-15V电平。当无数据传输时，线上为TTL，从开始传送数据到结束，线上电平从TTL电平到RS-232电平再返回TTL电平。接收器典型的工作电平在+3～+12V与-3～-12V。</p>
+<p>由于发送电平与接收电平的差仅为2V至3V左右，所以其共模抑制能力差，再加上双绞线上的分布电容，其传送距离最大为约15米，最高速率为20kb/s。RS-232是为点对点（即只用一对收、发设备）通讯而设计的，其驱动器负载为3～7kΩ。所以RS-232适合本地设备之间的通信.</p>
+<ul>
+<li><h4 id="RS485"><a href="#RS485" class="headerlink" title="RS485"></a>RS485</h4></li>
+</ul>
+<hr>
+<p>RS-485的电气特性:逻辑“1”以两线间的电压差为+(0.26)V表示;逻辑“0”以两线间的电压差为-(0.26)V表示。接口信号电平比RS-232-C降低了，就不易损坏接口电路的芯片， 且该电平与TTL电平兼容，可方便与TTL 电路连接。<br>RS-485的数据最高传输速率为10Mbps 。<br>RS-485接口是采用平衡驱动器和差分接收器的组合，抗共模干扰能力增强，即抗噪声干扰性好。<br>RS-485最大的通信距离约为1219m，最大传输速率为10Mb/S，传输速率与传输距离成反比，在100Kb/S的传输速率下，才可以达到最大的通信距离，如果需传输更长的距离，需要加485中继器。RS-485总线一般最大支持32个节点，如果使用特制的485芯片，可以达到128个或者256个节点，最大的可以支持到400个节点。</p>
+<ul>
+<li><h4 id="RS422"><a href="#RS422" class="headerlink" title="RS422"></a>RS422</h4></li>
+</ul>
+<hr>
+<p>RS-422 的电气性能与RS-485 完全一样。主要的区别在于：<br>RS-422 有4 根信号线：两根发送（Y、Z）、两根接收（A、B）。由于RS-422 的收与发是分开的所以可以同时收和发（全双工）。<br>RS-485 有两根数据线：发送和接收都是A 和B。由于RS-485 的收与发是共用两根线，所以不能同时收和发（半双工）。</p>
 
             <hr>
           </div>
@@ -176,7 +189,7 @@
                 <span>
                   <i class="iconfont icon-inbox"></i>
                   
-                    <a class="hover-with-bg" href="/categories/%E9%9A%8F%E7%AC%94">随笔</a>
+                    <a class="hover-with-bg" href="/categories/%E8%B5%84%E6%96%99">资料</a>
                     &nbsp;
                   
                 </span>
@@ -184,16 +197,16 @@
               <span>
                 <i class="iconfont icon-tag"></i>
                 
-                  <a class="hover-with-bg" href="/tags/%E4%B8%AA%E4%BA%BA">个人</a>
+                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0">学习</a>
                 
-                  <a class="hover-with-bg" href="/tags/%E6%84%9F%E6%82%9F">感悟</a>
+                  <a class="hover-with-bg" href="/tags/%E8%B5%84%E6%96%99">资料</a>
                 
               </span>
             </div>
             
               <div id="post-note">
-                <div><strong>本文作者：</strong><a href="../../../../index.html">Balrog</a></div>
-                <div><strong>本文链接：</strong><a href="http://balrog-chou.github.io/2020/11/26/%E9%9A%8F%E7%AC%946/">http://balrog-chou.github.io/2020/11/26/%E9%9A%8F%E7%AC%946/</a></div>
+                <div><strong>本文作者：</strong><a href="../index.html">Balrog</a></div>
+                <div><strong>本文链接：</strong><a href="https://www.balrog.xyz/posts/bed34380.html">https://www.balrog.xyz/posts/bed34380.html</a></div>
                 <div><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</div>
               </div>
             
@@ -201,14 +214,14 @@
               <div id="post-nav" class="container">
                   <div class="row">
                     
-                      <a href="../../../../2021/04/12/%E9%9A%8F%E7%AC%947/" id="post-nav-prev" class="col">
+                      <a href="ecb17eb7.html" id="post-nav-prev" class="col">
                         <i class="fas fa-arrow-left"></i>
-                        <span class="post-nav-title">随笔（七）</span>
+                        <span class="post-nav-title">串口、COM口、UART口, TTL、RS-232、RS-485区别详解</span>
                       </a>
                     
                     
-                      <a href="../../20/%E9%9A%8F%E7%AC%945/" id="post-nav-next" class="col">
-                        <span class="post-nav-title">随笔（五）</span>
+                      <a href="8e683586.html" id="post-nav-next" class="col">
+                        <span class="post-nav-title">随笔（三）</span>
                         <i class="fas fa-arrow-right"></i>
                       </a>
                     
@@ -256,7 +269,7 @@
   <div class="sidebar-overlay"></div>
   <div class="sidebar-intrude">
     <div class="sidebar-avatar">
-      <img src="../../../../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" srcset="../../../../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" alt="avatar"/>
+      <img src="../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" srcset="../https:/z3.ax1x.com/2021/09/29/45b94e.jpg" alt="avatar"/>
     </div>
     <div class="text-center sidebar-about">
       <p class="h3 sidebar-author">Balrogの记事簿</p>
@@ -364,22 +377,22 @@
 </footer>
 </div>
 <!-- SCRIPTS -->
-<script src="../../../../lib/popper/popper.min.js" ></script>
-<script src="../../../../lib/bootstrap/js/bootstrap.min.js" ></script>
-<script src="../../../../lib/mdbootstrap/js/mdb.min.js" ></script>
-<script src="../../../../js/main.js" ></script>
+<script src="../lib/popper/popper.min.js" ></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="../lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="../js/main.js" ></script>
 
-  <script src="../../../../js/lazyload.js" ></script>
+  <script src="../js/lazyload.js" ></script>
 
 
   
-    <script src="../../../../lib/tocbot/tocbot.min.js" ></script>
+    <script src="../lib/tocbot/tocbot.min.js" ></script>
   
-  <script src="../../../../js/post.js" ></script>
+  <script src="../js/post.js" ></script>
 
 <!-- Plugins -->
 
-  <script src="../../../../lib/prettify/prettify.min.js" ></script>
+  <script src="../lib/prettify/prettify.min.js" ></script>
   <script type="text/javascript">
     $(document).ready(function () {
       $('pre').addClass('prettyprint  linenums');
@@ -388,12 +401,12 @@
   </script>
 
 
-  <script src="../../../../lib/typed/typed.min.js" ></script>
+  <script src="../lib/typed/typed.min.js" ></script>
   <script type="text/javascript">
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "随笔（六）&nbsp;",
+        "串口：RS233-RS485-RS422几种总线对比&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
@@ -407,7 +420,7 @@
   </script>
 
 
-  <script src="../../../../lib/anchor/anchor.min.js" ></script>
+  <script src="../lib/anchor/anchor.min.js" ></script>
   <script type="text/javascript">
     anchors.options = {
       placement: "right",
@@ -423,9 +436,9 @@
   </script>
 
 
-  <script src="../../../../js/local-search.js" ></script>
+  <script src="../js/local-search.js" ></script>
   <script type="text/javascript">
-    var path = "../../../../local-search.xml";
+    var path = "../local-search.xml";
     var inputArea = document.querySelector("#local-search-input");
     inputArea.onclick = function () {
       getSearchFile(path);
@@ -434,7 +447,7 @@
   </script>
 
 
-  <script src="../../../../lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script src="../lib/fancybox/jquery.fancybox.min.js" ></script>
   <script type="text/javascript">
   /* Fancybox */
   var setupFancybox = function () {
@@ -503,7 +516,7 @@
   </script>
 
 
-  <script async src="../../../../cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" ></script>
+  <script async src="../cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" ></script>
   
     <script>
       /* 不蒜子计数初始值纠正 */
