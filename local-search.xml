@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>负载均衡、分布式、集群的关系？</title>
+    <link href="/posts/acb12eb4.html"/>
+    <url>/posts/acb12eb4.html</url>
+    
+    <content type="html"><![CDATA[<h2 id="负载均衡、分布式、集群"><a href="#负载均衡、分布式、集群" class="headerlink" title="负载均衡、分布式、集群"></a>负载均衡、分布式、集群</h2><a id="more"></a><hr><h3 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h3><p>一个任务由多个人协作完成。</p><ul><li>比如饭馆里有负责点菜的，有负责做菜的，有负责传菜的。</li><li>比如饭馆里有买菜的，洗菜的，切菜的，炒菜的</li><li>比如饭馆里有好几个负责做菜的</li></ul><h3 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h3><p>多个人紧密协作，来完成一个工作，就像一个人似的</p><ul><li><p>比如饭馆里的所有厨师，或者所有工作人员可以看作一个集群</p></li><li><p>集群有很多好处：</p></li><li><ul><li>是做菜的能力比一个人增加了</li><li>多招一个厨子，就能轻易增加做菜的数量（<strong>横向伸缩</strong>），</li><li>如果一个厨子病了，饭馆不至于停业（<strong>高可用</strong>）</li></ul></li></ul><h3 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h3><p>将一系列任务逐项分发给多个人，完成任务的能力增加，而且让大家都不闲着（提高<strong>资源利用率</strong>），减少任务等待的时间（降低<strong>延迟</strong>）</p><ul><li><p>比如饭馆厨房里做菜的厨师有多个，新的菜来了让谁做呢？</p></li><li><ul><li>可以像发牌似的，一人一个轮流来（<strong>轮流</strong>）</li><li>有人做的快，有人做的慢，可以按照一定的比例轮流（<strong>加权轮流</strong>）</li><li>有可能有人累了干慢了，就会积压一堆订单，就根据谁面前的订单最少分给谁（<strong>最少积压请求数</strong>）</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>笔记</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学习</tag>
+      
+      <tag>资料</tag>
+      
+      <tag>笔记</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>随笔（八）</title>
     <link href="/posts/16befda1.html"/>
     <url>/posts/16befda1.html</url>
