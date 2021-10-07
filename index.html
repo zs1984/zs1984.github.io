@@ -171,10 +171,21 @@
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">负载均衡(Load Balance)是集群技术（Cluster）的一种应用。负载均衡可以将工作任务分摊到多个处理单元，从而提高并发处理能力。...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">负载均衡
+负载均衡(Load Balance)是集群技术（Cluster）的一种应用。负载均衡可以将工作任务分摊到多个处理单元，从而提高并发处理能力。目前最常见的负载均衡应用是Web负载均衡。根据实现的原理不同，常见的web负载均衡技术包括：DNS轮询、IP负载均衡和CDN。
+其中IP负载均衡可以使用硬件设备或软件方式来实现。
+
+什么是web负载均衡服务器集群(Cluster)使得多个服务器节点能够协同工作，根据目的的不同，服务器集群可以分为：
+
+高性能集群：将单个重负载的请求分散到多个节点进行处理，最后再将处理结果进行汇总
+高可用集群：提高冗余单元，避免单点故障
+负载均衡集群：将大量的并发请求分担到多个处理节点。由于单个处理节点的故障不影响整个服务，负载均衡集群同时也实现了高可用性。
+
+一般提到的负载均衡(Load Balance)，是指实现负载均衡集群。负载均衡实现了横向扩展（Scale Out），避免纵向的升级（Scale Up）换代。
+这里的web负载均衡，特指能够分担web请求（http，https等）的负载均衡技术。
+基本原理任何的负载均衡技术都要想办法建立某种一对多的映射</div>
         </div>
       </a>
       <div>
@@ -182,8 +193,8 @@
           <i class="iconfont icon-riqi2"></i>&nbsp;2021-10-07&nbsp;&nbsp;
         
         
-        <i class="far fa-chart-bar"></i>&nbsp;3.7k字&nbsp;&nbsp;
-        <i class="far fa-clock"></i>&nbsp;13分钟&nbsp;&nbsp;
+        <i class="far fa-chart-bar"></i>&nbsp;3.6k字&nbsp;&nbsp;
+        <i class="far fa-clock"></i>&nbsp;12分钟&nbsp;&nbsp;
         
         
           <i class="iconfont icon-inbox"></i>
@@ -222,10 +233,39 @@
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">负载均衡、分布式、集群对比note...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">负载均衡、分布式、集群分布式一个任务由多个人协作完成。
+
+比如饭馆里有负责点菜的，有负责做菜的，有负责传菜的。
+比如饭馆里有买菜的，洗菜的，切菜的，炒菜的
+比如饭馆里有好几个负责做菜的
+
+集群多个人紧密协作，来完成一个工作，就像一个人似的
+
+比如饭馆里的所有厨师，或者所有工作人员可以看作一个集群
+
+集群有很多好处：
+
+
+是做菜的能力比一个人增加了
+多招一个厨子，就能轻易增加做菜的数量（横向伸缩），
+如果一个厨子病了，饭馆不至于停业（高可用）
+
+
+
+负载均衡将一系列任务逐项分发给多个人，完成任务的能力增加，而且让大家都不闲着（提高资源利用率），减少任务等待的时间（降低延迟）
+
+比如饭馆厨房里做菜的厨师有多个，新的菜来了让谁做呢？
+
+
+可以像发牌似的，一人一个轮流来（轮流）
+有人做的快，有人做的慢，可以按照一定的比例轮流（加权轮流）
+有可能有人累了干慢了，就会积压一堆订单，就根据谁面前的订单最少分给谁（最少积压请求数）
+
+
+
+</div>
         </div>
       </a>
       <div>
@@ -233,7 +273,7 @@
           <i class="iconfont icon-riqi2"></i>&nbsp;2021-10-05&nbsp;&nbsp;
         
         
-        <i class="far fa-chart-bar"></i>&nbsp;359字&nbsp;&nbsp;
+        <i class="far fa-chart-bar"></i>&nbsp;347字&nbsp;&nbsp;
         <i class="far fa-clock"></i>&nbsp;1分钟&nbsp;&nbsp;
         
         

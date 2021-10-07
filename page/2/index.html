@@ -271,10 +271,17 @@
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">首先，串口、UART口、COM口、USB口是指的物理接口形式(硬件)。而TTL、RS-232、RS-485是指的电平标准(电信号)。...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">串口、COM口、UART口, TTL、RS-232、RS-485区别详解调试时总是会遇到各种各样的接口，各种各样的转换板，似懂非懂的感觉很不爽！
+首先，串口、UART口、COM口、USB口是指的物理接口形式(硬件)。而TTL、RS-232、RS-485是指的电平标准(电信号)。
+串口：串口是一个泛称，UART、TTL、RS232、RS485都遵循类似的通信时序协议，因此都被通称为串口。
+
+UART接口：通用异步收发器（Universal Asynchronous Receiver/Transmitter)，UART是串口收发的逻辑电路，这部分可以独立成芯片，也可以作为模块嵌入到其他芯片里，单片机、SOC、PC里都会有UART模块。
+
+COM口：特指台式计算机或一些电子设备上的D-SUB外形(一种连接器结构，VGA接口的连接器也是D-SUB)的串行通信口，应用了串口通信时序和RS232的逻辑电平。
+
+USB口：通用串行总线，和串口完全是两个概念。虽然也是串行方式通信，但由于USB的通信时序和信号电平都和串口完全不同，因此和串口没有任何关系。USB是高速的通信接口，用于PC连接各种外设，U</div>
         </div>
       </a>
       <div>
@@ -320,10 +327,20 @@
         
         
           
-          
         
-        <div class="index-excerpt" style="max-height: none;">
-          <div class="index-text mb-1">目前RS-232是PC机与通信工业中应用最广泛的一种串行接口。RS-232被定义为一种在低速率串行通讯中增加通讯距离的单端标准。RS-232采取不平衡传输方式，即所谓单端通讯。...</div>
+        <div class="index-excerpt" >
+          <div class="index-text mb-1">RS233-RS485-RS422几种总线对比
+RS-232串行接口标准
+
+
+目前RS-232是PC机与通信工业中应用最广泛的一种串行接口。RS-232被定义为一种在低速率串行通讯中增加通讯距离的单端标准。RS-232采取不平衡传输方式，即所谓单端通讯。
+收、发端的数据信号是相对于信号地，如从DTE设备发出的数据在使用DB25连接器时是2脚相对7脚（信号地）的电平，DB25各引脚定义参见图1。典型的RS-232信号在正负电平之间摆动，在发送数据时，发送端驱动器输出正电平在+5～+15V，负电平在-5～-15V电平。当无数据传输时，线上为TTL，从开始传送数据到结束，线上电平从TTL电平到RS-232电平再返回TTL电平。接收器典型的工作电平在+3～+12V与-3～-12V。
+由于发送电平与接收电平的差仅为2V至3V左右，所以其共模抑制能力差，再加上双绞线上的分布电容，其传送距离最大为约15米，最高速率为20kb/s。RS-232是为点对点（即只用一对收、发设备）通讯而设计的，其驱动器负载为3～7kΩ。所以RS-232适合本地设备之间的通信.
+
+RS485
+
+
+RS-485的电气特性:逻</div>
         </div>
       </a>
       <div>
@@ -331,7 +348,7 @@
           <i class="iconfont icon-riqi2"></i>&nbsp;2020-04-13&nbsp;&nbsp;
         
         
-        <i class="far fa-chart-bar"></i>&nbsp;774字&nbsp;&nbsp;
+        <i class="far fa-chart-bar"></i>&nbsp;704字&nbsp;&nbsp;
         <i class="far fa-clock"></i>&nbsp;2分钟&nbsp;&nbsp;
         
         
