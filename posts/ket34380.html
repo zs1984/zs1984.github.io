@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="../img/p1.png">
+  <link rel="icon" type="image/png" href="../img/p1.jpg">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="author" content="Balrog">
+  
+    <meta name="description" content="人就一事无成的five游民">
+  
+  
+    <meta name="keywords" content="学习,资料,笔记," />
+  
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <title>负载均衡 ~ Balrogの记事簿</title>
+  <link rel="stylesheet" href="../lib/font-awesome/css/all.min.css"  >
+<link rel="stylesheet" href="../lib/bootstrap/css/bootstrap.min.css"  >
+<link rel="stylesheet" href="../lib/mdbootstrap/css/mdb.min.css"  >
+<link rel="stylesheet" href="../lib/github-markdown/github-markdown.min.css"  >
+
+<link rel="stylesheet" href="../at.alicdn.com/t/font_1067060_qzomjdt8bmp.css">
+
+
+  <link rel="stylesheet" href="../lib/prettify/tomorrow-night-eighties.min.css"  >
+
+
+  <link rel="stylesheet" href="../lib/fancybox/jquery.fancybox.min.css"  >
+
+<link rel="stylesheet" href="../css/main.css"  >
+<script src="../lib/jquery/jquery.min.js" ></script>
+  <style type="text/css">
+    .banner-bg {
+      
+        background-image: url('https://z3.ax1x.com/2021/09/26/4cSdyV.jpg');
+      
+      background-position: center;
+      background-repeat: repeat-y;
+      background-size: cover;
+      background-attachment: fixed;
+    }
+  </style>
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body class="banner-bg">
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="../index.html">&nbsp;<strong>Balrogの记事簿</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">首页</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../archives/">归档</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../categories/">分类</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../tags/">标签</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../about/">关于</a>
+          </li>
+        
+          
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="../links/">友链</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+
+</nav>
+
+    <div class="view intro-2 rgba-black-slight" id="background">
+      <div class="full-bg-img">
+        <div class="mask flex-center">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+            
+              <br>
+              <p class="mt-3">
+                <i class=i class="far fa-calendar-alt"></i>
+                <span class="post-date">2020-10-07&nbsp;|&nbsp;</span>
+                <i class="far fa-chart-bar"></i>
+                <span class="post-count">3.6k</span>字&nbsp;|&nbsp;
+                <i class="far fa-clock"></i>
+                <span class="post-count">12</span>分钟
+                
+                  <span id="busuanzi_container_page_pv" style="display:none">
+                    &nbsp;|&nbsp;
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv"></span>次
+                  </span>
+                
+              </p>
+            
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+  <main id="mainContent" class="rgba-black-slight">
+    
+      
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-md">
+      <div class="py-5 z-depth-3" id="board">
+        <div class="post-content mx-auto" id="post">
+          <div class="markdown-body">
+            <h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a><strong>负载均衡</strong></h1><blockquote>
+<p>负载均衡(Load Balance)是集群技术（Cluster）的一种应用。负载均衡可以将工作任务分摊到多个处理单元，从而提高并发处理能力。目前最常见的负载均衡应用是Web负载均衡。根据实现的原理不同，<strong>常见的web负载均衡技术包括：DNS轮询、IP负载均衡和CDN。</strong></p>
+<p>其中IP负载均衡可以使用硬件设备或软件方式来实现。</p>
+</blockquote>
+<h1 id="什么是web负载均衡"><a href="#什么是web负载均衡" class="headerlink" title="什么是web负载均衡"></a><strong>什么是web负载均衡</strong></h1><p>服务器集群(Cluster)使得多个服务器节点能够协同工作，根据目的的不同，服务器<a href="https://www.balrog.xyz/posts/acb12eb4.html">集群</a>可以分为：</p>
+<ul>
+<li>高性能集群：将单个重负载的请求分散到多个节点进行处理，最后再将处理结果进行汇总</li>
+<li>高可用集群：提高冗余单元，避免单点故障</li>
+<li>负载均衡集群：<strong>将大量的并发请求分担到多个处理节点。由于单个处理节点的故障不影响整个服务，负载均衡集群同时也实现了高可用性。</strong></li>
+</ul>
+<p>一般提到的负载均衡(Load Balance)，是指实现负载均衡集群。负载均衡实现了横向扩展（Scale Out），避免纵向的升级（Scale Up）换代。</p>
+<p>这里的web负载均衡，特指能够分担web请求（http，https等）的负载均衡技术。</p>
+<h1 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a><strong>基本原理</strong></h1><p>任何的负载均衡技术都要想办法建立某种一对多的映射机制：一个请求的入口映射到多个处理请求的节点，从而实现分而治之（Divide and Conquer）。</p>
+<p>这种映射机制使得多个物理存在对外体现为一个虚拟的整体，对服务的请求者屏蔽了内部的结构。</p>
+<p>采用不同的机制建立映射关系，可以形成不同的负载均衡技术，常见的包括：</p>
+<ul>
+<li>DNS轮询</li>
+<li>CDN</li>
+<li>IP负载均衡<ul>
+<li>商业的硬件负载均衡 F5，Netscale</li>
+<li>开源的软件负载均衡 LVS，Nginx，Haproxy (<strong>Nginx和Haproxy通常做七层负载均衡, LVS做四层负载均衡</strong>. 但是Nginx也可以通过stream模块做四层负载均衡, Haproxy也可以做四层负载均衡 )<ul>
+<li>VS/NAT</li>
+<li>VS/TUN</li>
+<li>VS/DN</li>
+<li><strong>VS/FULLNAT</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a><strong>DNS</strong></h2><p>DNS轮询是最简单的负载均衡方式。以域名作为访问入口，通过配置多条DNS A记录使得请求可以分配到不同的服务器。</p>
+<p>DNS轮询没有快速的健康检查机制，而且只支持WRR的调度策略导致负载很难“均衡”，通常用于要求不高的场景。并且DNS轮询方式直接将服务器的真实地址暴露给用户，不利于服务器安全。</p>
+<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a><strong>CDN</strong></h2><p>CDN（Content Delivery Network，内容分发网络）。通过发布机制将内容同步到大量的缓存节点，并在DNS服务器上进行扩展，找到里用户最近的缓存节点作为服务提供节点。</p>
+<p>因为很难自建大量的缓存节点，所以通常使用CDN运营商的服务。目前国内的服务商很少，而且按流量计费，价格也比较昂贵。</p>
+<h2 id="IP负载均衡"><a href="#IP负载均衡" class="headerlink" title="IP负载均衡"></a><strong>IP负载均衡</strong></h2><p>IP负载均衡是基于特定的TCP/IP技术实现的负载均衡。比如NAT、DR、Turning等。LVS是最经常使用的方式。</p>
+<p>IP负载均衡可以使用硬件设备，也可以使用软件实现。硬件设备的主要产品是F5-BIG-IP-GTM（简称F5)，<strong>软件产品主要有LVS、HAProxy、NginX。其中LVS、HAProxy可以工作在4-7层，NginX工作在7层。</strong></p>
+<p>硬件负载均衡设备可以将核心部分做成芯片，性能和稳定性更好，而且商用产品的可管理性、文档和服务都比较好。唯一的问题就是价格。</p>
+<p>软件负载均衡通常是开源软件。自由度较高，但学习成本和管理成本会比较大。</p>
+<h3 id="F5"><a href="#F5" class="headerlink" title="F5"></a><strong>F5</strong></h3><p>F5的全称是F5-BIG-IP-GTM，是最流行的硬件负载均衡设备，其并发能力达到百万级。F5的主要特性包括：</p>
+<ol>
+<li><p><strong>多链路的负载均衡和冗余</strong></p>
+<p>可以接入多条ISP链路，在链路之间实现负载均衡和高可用。</p>
+</li>
+<li><p><strong>防火墙负载均衡</strong></p>
+<p>F5具有异构防火墙的负载均衡与故障自动排除能力。</p>
+</li>
+<li><p><strong>服务器负载均衡</strong></p>
+<p>这是F5最主要的功能，F5可以配置针对所有的对外提供服务的服务器配置Virtual Server实现负载均衡、健康检查、回话保持等。</p>
+</li>
+<li><p><strong>高可用</strong></p>
+<p>F5设备自身的冗余设计能够保证99.999%的正常运行时间，双机F5的故障切换时间为毫秒级。</p>
+<p>使用F5可以配置整个集群的链路冗余和服务器冗余，提高可靠的健康检查机制，以保证高可用。</p>
+</li>
+<li><p><strong>安全性</strong></p>
+<p>与防火墙类似，F5采用缺省拒绝策略，可以为任何站点增加额外的安全保护，防御普通网络攻击，包括DDoS、IP欺骗、SYN攻击、teartop和land攻击、ICMP攻击等。</p>
+</li>
+<li><p><strong>易于管理</strong></p>
+<p>F5提供HTTPS、SSH、Telnet、SNMP等多种管理方式，包含详尽的实时报告和历史纪录报告。同时还提供二次开发包(i-Control)。</p>
+</li>
+<li><p>其他</p>
+<p>F5还提供了SSL加速、软件升级、IP地址过滤、带宽控制等辅助功能。</p>
+</li>
+</ol>
+<h2 id="LVS"><a href="#LVS" class="headerlink" title="LVS"></a><strong>LVS</strong></h2><p>LVS(Linux Virtual Server, linux虚拟服务器），是<a href="http://zh.linuxvirtualserver.org/" target="_blank" rel="noopener">章文嵩博士</a>开发的开放软件，目前已经集成到Linux内核中。</p>
+<p>基于不同的网络技术，<strong>LVS支持多种负载均衡机制。包括：VS/NAT（基于网络地址转换技术）、VS/TUN（基于IP隧道技术）和VS/DR（基于直接路由技术）。</strong></p>
+<p>此外，为了适应不同的需要，淘宝开发了<a href="http://kb.linuxvirtualserver.org/wiki/IPVS_FULLNAT_and_SYNPROXY" target="_blank" rel="noopener"><strong>VS/FULLNAT</strong></a>，从本质上来说也是基于网络地址转换技术。最近还有一个基于VS/FULLNAT的<a href="https://github.com/xiaomi-sa/dsnat" target="_blank" rel="noopener"><strong>DNAT</strong></a>模块。</p>
+<p>不管使用哪种机制，LVS都不直接处理请求，而是将请求转发到后面真正的服务器(Real Server)。不同的机制，决定了响应包如何返回到客户端。</p>
+<h3 id="VS-NAT-Virtual-Server-via-Network-Address-Translation"><a href="#VS-NAT-Virtual-Server-via-Network-Address-Translation" class="headerlink" title="VS/NAT (Virtual Server via Network Address Translation)"></a><strong>VS/NAT (Virtual Server via Network Address Translation)</strong></h3><p><a href="http://zh.wikipedia.org/wiki/网络地址转换" target="_blank" rel="noopener">NAT（Network Address Translation，网络地址转换）</a>也叫做网络掩蔽或者IP掩蔽，是将IP 数据包头中的IP 地址转换为另一个IP 地址的过程。</p>
+<p>NAT能够将私有（保留）地址转化为合法IP地址，通常用于一个公共IP地址和多个内部私有IP地址直接的映射，广泛应用于各种类型Internet接入方式和各种类型的网络中。</p>
+<p>通过使用NAT将目的地址转换到多个服务器的方式，可以实现负载均衡，同时能够隐藏并保护内部服务器，避免来自网络外部的攻击。商用负载均衡设备如Cisco的LocalDirector、F5的Big/IP和Alteon的ACEDirector都是基于NAT方法。</p>
+<p>VS/NAT(Virtual Server via Network Address Translation)是基于NAT技术实现负载均衡的方法。其架构如下图所示：</p>
+<p><img src="https://z3.ax1x.com/2021/10/06/4zdOTU.jpg" srcset="/img/loading.gif" alt=""></p>
+<ol>
+<li><p>客户通过Virtual IP Address（虚拟服务的IP地址）访问网络服务时，请求报文到达调度器</p>
+</li>
+<li><p>调度器根据连接调度算法从一组真实服务器中选出一台服务器，将报文的目标地址Virtual IP Address改写成选定服务器的地址，报文的目标端口改写成选定服务器的相应端口，最后将修改后的报文发送给选出的服务器。</p>
+</li>
+<li><p>真实的服务器处理请求，并将响应报文发到调度器。</p>
+</li>
+<li><p>调度器将报文的源地址和源端口改为Virtual IP Address和相应的端口</p>
+</li>
+<li><p>调度器将修改过的报文发给用户</p>
+</li>
+</ol>
+<p><strong>在VS/NAT的集群系统中，请求和响应的数据报文都需要通过负载调度器，当真实服务器的数目在10台和20台之间时，负载调度器将成为整个集群系统的新瓶颈。大多数Internet服务都有这样的特点：请求报文较短而响应报文往往包含大量的数据。如果能将请求和响应分开处理，即在负载调度器中只负责调度请求而响应直接返回给客户，将极大地提高整个集群系统的吞吐量。</strong>比如IP隧道技术。</p>
+<h3 id="VS-TUN"><a href="#VS-TUN" class="headerlink" title="VS/TUN"></a>VS/TUN</h3><p>IP Tunneling(IP隧道)技术，又称为IP封装技术(IP encapsulation)，是一种在网络之间传递数据的方式。可以将一个IP报文封装到另一个IP报文（可能是不同的协议）中，并转发到另一个IP地址。IP隧道主要用于移动主机和虚拟私有网络（Virtual Private Network），在其中隧道都是静态建立的，隧道一端有一个IP地址，另一端也有唯一的IP地址。</p>
+<p>VS/TUN（Virtual Server via IP Tunneling）是基于隧道技术实现负载均衡的方法。其架构如下图所示：</p>
+<p><img src="https://z3.ax1x.com/2021/10/06/4zrQ2Q.jpg" srcset="/img/loading.gif" alt=""></p>
+<p>VS/TUN与VS/NAT的工作机制大体上相同，区别在于：</p>
+<ol>
+<li>调度器转发报文的时候进行了协议的二次封装，真实的服务器接收到请求后先进行解包。过程如下图所示：</li>
+</ol>
+<p><img src="https://z3.ax1x.com/2021/10/07/5SHNSH.jpg" srcset="/img/loading.gif" alt=""></p>
+<h3 id="VS-DR"><a href="#VS-DR" class="headerlink" title="VS/DR"></a><strong>VS/DR</strong></h3><p>DR(Direct Routing, 直接路由), 路由器学习路由的方法之一。路由器对于自己的网络接口所直连的网络之间的通信，可以自动维护路由表，而且不需要进行路由计算。</p>
+<p>直接路由通常用在一个三层交换机连接几个VLAN的情况，只要设置直接路由VLAN之间就可以通信，不需要设置其他的路由方式。</p>
+<p>VS/DR(Virtual Server via Direct Routing)是基于直接路由实现负载均衡的方法。其架构如下图所示：</p>
+<p><img src="https://z3.ax1x.com/2021/10/07/5SH57V.jpg" srcset="/img/loading.gif" alt=""></p>
+<p>跟VS/TUN方法相同，VS/DR利用大多数Internet服务的非对称特点，负载调度器中只负责调度请求，而服务器直接将响应返回给客户，可以极大地提高整个集群系统的吞吐量。</p>
+<p>VS/DR要求调度器和服务器组都必须在物理上有一个网卡通过不分段的局域网相连，即通过交换机或者高速的HUB相连，中间没有隔有路由器。VIP地址为调度器和服务器组共享，调度器配置的VIP地址是对外可见的，用于接收虚拟服务的请求报文；所有的服务器把VIP地址配置在各自的Non-ARP网络设备上，它对外面是不可见的，只是用于处理目标地址为VIP的网络请求。</p>
+<p><strong>VS/DR的整个过程与VS/TUN非常类似，不同之处在于调度器不对请求包进行二次封装，只是将目标MAC地址更改为经过调度算法选出的目标服务器的MAC地址。</strong>如下图：</p>
+<p><img src="https://z3.ax1x.com/2021/10/07/5Sbi1H.jpg" srcset="/img/loading.gif" alt=""></p>
+<h2 id="三种方法的优缺点比较"><a href="#三种方法的优缺点比较" class="headerlink" title="三种方法的优缺点比较"></a><strong>三种方法的优缺点比较</strong></h2><table>
+<thead>
+<tr>
+<th></th>
+<th>VS/NAT</th>
+<th>VS/TUN</th>
+<th>VS/DR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Server</td>
+<td>any</td>
+<td>Tunneling</td>
+<td>Non-arp device</td>
+</tr>
+<tr>
+<td>server network</td>
+<td>private</td>
+<td>LAN/WAN</td>
+<td>LAN</td>
+</tr>
+<tr>
+<td>server number</td>
+<td>low (10~20)</td>
+<td>High (100)</td>
+<td>High (100)</td>
+</tr>
+<tr>
+<td>server gateway</td>
+<td>load balancer</td>
+<td>own router</td>
+<td>Own router</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注：以上三种方法所能支持最大服务器数目的估计是假设调度器使用100M网卡，调度器的硬件配置与后端服务器的硬件配置相同，而且是对一般Web服务。使用更高的硬件配置（如千兆网卡和更快的处理器）作为调度器，调度器所能调度的服务器数量会相应增加。当应用不同时，服务器的数目也会相应地改变。所以，以上数据估计主要是为三种方法的伸缩性进行量化比较。</p>
+</blockquote>
+<h3 id="VS-NAT"><a href="#VS-NAT" class="headerlink" title="VS/NAT"></a>VS/NAT</h3><ul>
+<li>优点<ul>
+<li>对后端服务器的操作系统无要求</li>
+<li>只需要一个IP地址配置在调度器上，服务器组可以用私有的IP地址。</li>
+<li>支持端口映射</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>请求和响应报文都需要通过调度器，伸缩能力有限（10+)</li>
+<li>要求服务器和调度器在同一个VLAN</li>
+<li>需要将服务器的默认网关指向调度器</li>
+<li>对于那些将IP地址或者端口号在报文数据中传送的网络服务，需要编写相应的应用模块来转换报文数据中的IP地址或者端口号</li>
+</ul>
+</li>
+</ul>
+<h3 id="VS-TUN-1"><a href="#VS-TUN-1" class="headerlink" title="VS/TUN"></a>VS/TUN</h3><ul>
+<li>优点<ul>
+<li>不需要调度应答报文，性能高</li>
+<li>服务器和调度器可以不在同一个VLAN</li>
+<li>支持广域负载均衡</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>所有的服务器必须支持“IP Tunneling”协议，要安装内核模块（比如IPIP等），配置复杂</li>
+<li>有建立IP隧道的开销</li>
+<li>服务器上直接绑定虚拟IP(Virtaul IP)，风险很大</li>
+<li>服务器需要联通外网</li>
+<li>不支持端口映射</li>
+</ul>
+</li>
+</ul>
+<h3 id="VS-DR-1"><a href="#VS-DR-1" class="headerlink" title="VS/DR"></a>VS/DR</h3><ul>
+<li>优点<ul>
+<li>与VS/TUN相比，没有IP隧道的开销，性能最好</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>要求调度器与服务器都有一块网卡连在同一物理网段（同一个VLAN）上</li>
+<li>要求服务器网络设备（或者设备别名）不作ARP响应，或者能将报文重定向（Redirect）到本地的Socket端口上</li>
+<li>服务器上直接绑定虚拟IP(Virtaul IP)，风险很大</li>
+<li>不支持端口映射</li>
+</ul>
+</li>
+</ul>
+<h3 id="VS-FULLNAT"><a href="#VS-FULLNAT" class="headerlink" title="VS/FULLNAT"></a>VS/FULLNAT</h3><p>如上节所述，前面三种传统的负载均衡机制各自存在一些不足。</p>
+<p><a href="http://kb.linuxvirtualserver.org/wiki/IPVS_FULLNAT_and_SYNPROXY" target="_blank" rel="noopener">VS/FULLNAT</a>是为了解决这些不足而新开发的一种转发模式。VS/FULLNAT的特点是：</p>
+<ol>
+<li>调度器和服务器可以跨VLAN通信，不需要配置在同一个网段</li>
+<li>请求和应答报文都经过调度器，服务器不需要绑定虚拟IP</li>
+</ol>
+<p>VS/FULLNAT这两个特点可以简化网络拓扑，降低运维成本和风险。</p>
+<h2 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h2><ol>
+<li>如果人少钱多，不在乎性能的损耗愿意多买服务器，同时希望最大程度较少运维的工作量，可以选择FULLNAT</li>
+<li>很大众的方式是用DR，没有太多的优点但也没有太多的缺点</li>
+<li>如果要搞广域网负载均衡，那就用TUN吧</li>
+<li>个人感觉NAT不是为了互联网用的。小并发的实验性应用或者用在非web场合，比如mysql集群等。当然，如果需要端口映射，必须使用NAT方式</li>
+</ol>
+
+            <hr>
+          </div>
+          <br>
+          <div>
+            <div id="post-tag">
+              
+                <span>
+                  <i class="iconfont icon-inbox"></i>
+                  
+                    <a class="hover-with-bg" href="/categories/%E7%AC%94%E8%AE%B0">笔记</a>
+                    &nbsp;
+                  
+                </span>
+              
+              <span>
+                <i class="iconfont icon-tag"></i>
+                
+                  <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0">学习</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E8%B5%84%E6%96%99">资料</a>
+                
+                  <a class="hover-with-bg" href="/tags/%E7%AC%94%E8%AE%B0">笔记</a>
+                
+              </span>
+            </div>
+            
+              <div id="post-note">
+                <div><strong>本文作者：</strong><a href="../index.html">Balrog</a></div>
+                <div><strong>本文链接：</strong><a href="https://www.balrog.xyz/posts/ket34380.html">https://www.balrog.xyz/posts/ket34380.html</a></div>
+                <div><strong>版权声明：</strong>本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</div>
+              </div>
+            
+            
+              <div id="post-nav" class="container">
+                  <div class="row">
+                    
+                      <a href="39452ce3.html" id="post-nav-prev" class="col">
+                        <i class="fas fa-arrow-left"></i>
+                        <span class="post-nav-title">随笔（四）</span>
+                      </a>
+                    
+                    
+                      <a href="ecb17eb7.html" id="post-nav-next" class="col">
+                        <span class="post-nav-title">串口、COM口、UART口, TTL、RS-232、RS-485区别详解</span>
+                        <i class="fas fa-arrow-right"></i>
+                      </a>
+                    
+                  </div>
+                </div>
+            
+          </div>
+        </div>
+
+        <!-- custom -->
+        
+
+        <!-- Comments -->
+        <div class="col-lg-10 mx-auto nopadding-md">
+          <div class="container comments mx-auto" id="comments">
+            
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="d-none d-lg-block col-lg-2 toc-container">
+      
+  <div id="toc">
+    <p class="h4"><i class="far fa-list-alt"></i>&nbsp;目录</p>
+    <div id="tocbot"></div>
+  </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    
+  </main>
+  
+<div id="sidebar" class="sidebar-hide">
+  <span class="sidebar-button sidebar-button-shift" id="toggle-sidebar" >
+    <i class="fa fa-arrow-right on" aria-hidden="true"></i>
+  </span>
+  <div class="sidebar-overlay"></div>
+  <div class="sidebar-intrude">
+    <div class="sidebar-avatar">
+      <img src="https://z3.ax1x.com/2021/09/29/45b94e.jpg" srcset="https://z3.ax1x.com/2021/09/29/45b94e.jpg" alt="avatar"/>
+    </div>
+    <div class="text-center sidebar-about">
+      <p class="h3 sidebar-author">Balrogの记事簿</p>
+      <p class="sidebar-subtitle">仓廪实而知礼节，衣食足而知荣辱。</p>
+      
+        <a href="https://github.com" class="h4" target="_blank">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        &nbsp;&nbsp;
+      
+        <a href="https://twitter.com" class="h4" target="_blank">
+          <i class="fab fa-twitter" aria-hidden="true"></i>
+        </a>
+        &nbsp;&nbsp;
+      
+        <a href="mailto:example@example.com" class="h4" target="_blank">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+        &nbsp;&nbsp;
+      
+    </div>
+    <div class="sidebar-friend">
+      <p class="h6 sidebar-friend-title">
+        <span class="sidebar-label-left"><i class="fas fa-user-friends"></i></span>
+        <span class="sidebar-label">友情链接</span>
+      </p>
+      <ul class="list-group">
+        
+          <a href="https://example.com/" target="_blank">
+            <li class="list-group-item">
+              <i class="fas fa-quote-left"></i>&nbsp;
+              friendname
+            </li>
+          </a>
+        
+    </ul>
+    </div>
+  </div>
+</div>
+
+
+  
+    <a class="z-depth-1" id="scroll-top-button" href="#" role="button">
+      <i class="fa fa-chevron-up scroll-top-arrow" aria-hidden="true"></i>
+    </a>
+  
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+  <div id="footerContent"  class="rgba-black-slight">
+<footer class="pt-5">
+  <div class="text-center py-3">
+    <div class="footer-theme">
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener noreferrer">Hexo</a> theme <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener noreferrer">Fluid</a> mod by <a href="https://github.com/qixa/hexo-theme-fluid-mod" target="_blank" rel="nofollow noopener noreferrer">Julydate</a>
+    </div>
+
+    
+      <div class="footer-copyright">
+        
+          ©2021&nbsp;Balrog
+        
+        
+          
+            <i class="iconfont icon-love"></i>
+          
+          <span>在命运之河中航行了<span id="runtime"></span>天了</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+      <!-- 一言 -->
+      <div class="footer-hitokoto">
+        <a id="hitokotoa" href="#" target="_blank" rel="nofollow noopener noreferrer">
+          <span id="hitokoto"></span>
+        </a>
+      </div>
+    
+    
+  </div>
+</footer>
+</div>
+<!-- SCRIPTS -->
+<script src="../lib/popper/popper.min.js" ></script>
+<script src="../lib/bootstrap/js/bootstrap.min.js" ></script>
+<script src="../lib/mdbootstrap/js/mdb.min.js" ></script>
+<script src="../js/main.js" ></script>
+
+  <script src="../js/lazyload.js" ></script>
+
+
+  
+    <script src="../lib/tocbot/tocbot.min.js" ></script>
+  
+  <script src="../js/post.js" ></script>
+
+<!-- Plugins -->
+
+  <script src="../lib/prettify/prettify.min.js" ></script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('pre').addClass('prettyprint  linenums');
+      prettyPrint();
+    })
+  </script>
+
+
+  <script src="../lib/typed/typed.min.js" ></script>
+  <script type="text/javascript">
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "负载均衡&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+  <script src="../lib/anchor/anchor.min.js" ></script>
+  <script type="text/javascript">
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+  <script src="../js/local-search.js" ></script>
+  <script type="text/javascript">
+    var path = "../local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      getSearchFile(path);
+      this.onclick = null
+    }
+  </script>
+
+
+  <script src="../lib/fancybox/jquery.fancybox.min.js" ></script>
+  <script type="text/javascript">
+  /* Fancybox */
+  var setupFancybox = function () {
+    $("#post img:not(.no-zoom img, img[no-zoom])").each(function() {
+    var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      $(this).wrap(element);
+    });
+  };
+  setupFancybox();
+  </script>
+
+
+
+
+  <!-- 首页文章列表随机图片 -->
+  <script type="text/javascript">
+    $("img.image_random").each(function(){
+      
+        var xjhUrl = "//img.xjh.me/random_img.php?return=json";
+      
+      var _this = $(this);
+      $.get(xjhUrl,function(data,status){
+        if(status === "success"){
+          if(data.result === 200){
+            _this[0].src = data.img;
+          }
+        }
+      });
+    });
+  </script>
+
+
+
+  <script type="text/javascript">
+  /*一言API*/
+  $(document).ready(function(){
+    getHitokoto();
+  });
+  function hitokoto(e) {
+    $("#hitokoto").stop().fadeOut(function() {
+      $("#hitokoto").html(e.hitokoto);
+      var element = document.getElementById('hitokotoa');
+      element.href = "https://hitokoto.cn/?uuid=" + e.uuid;
+      $("#hitokoto").stop().fadeIn()
+    })
+  };
+  function getHitokoto() {
+    var e = ["a", "b", "c", "d", "e", "i"];
+    fetch('https://v1.hitokoto.cn/?encode=json&charset=utf-8&c=' + e[Math.floor(Math.random() * e.length)],{
+      cache: 'no-cache',
+      method: 'GET',
+      mode: 'cors'
+    }).then(
+      response => response.json()
+    ).then(
+      data => {
+        hitokoto(data)
+        setTimeout(getHitokoto, 1e4)
+      }
+    ).catch(
+      console.error
+    )
+  };
+  </script>
+
+
+  <script async src="../cdn.jsdelivr.net/npm/busuanzi@2.3.0/bsz.pure.mini.js" ></script>
+  
+    <script>
+      /* 不蒜子计数初始值纠正 */
+      $(document).ready(function() {
+        var busuanziPvOffset = 0;
+        var busuanziUvOffset = 0;
+        
+          busuanziPvOffset = parseInt(1000);
+        
+        
+          busuanziUvOffset = parseInt(10);
+        
+        if(busuanziPvOffset !== 0) var intPv = setInterval(function(){fixPvCount(intPv, busuanziPvOffset)}, 100);
+        if(busuanziUvOffset !== 0) var intUv = setInterval(function(){fixUvCount(intUv, busuanziUvOffset)}, 100);
+        function fixPvCount(int, offset) {
+          if ($("#busuanzi_container_site_pv").css("display") !== "none") {
+            clearInterval(int);
+            $("#busuanzi_value_site_pv").html(parseInt($("#busuanzi_value_site_pv").html()) + offset);
+          }
+        }
+        function fixUvCount(int, offset) {
+          if ($("#busuanzi_container_site_uv").css("display") != "none") {
+            clearInterval(int);
+            $("#busuanzi_value_site_uv").html(parseInt($("#busuanzi_value_site_uv").html()) + offset);
+          }
+        }
+      });
+    </script>
+  
+
+
+
+<!-- Functions -->
+<script type="text/javascript">
+  /* 切换背景 */
+  
+  $("#background").removeClass("banner-bg");
+  $("body").addClass("banner-bg");
+  var postToTopHight = $("#board").offset().top;
+  $(window).scroll(function () {
+    var bgDisplay = false;
+    var scrollHeight = document.body.scrollTop + document.documentElement.scrollTop;
+    bgDisplay = scrollHeight >= postToTopHight;
+    if(bgDisplay) {
+      $('#background').removeClass("rgba-black-slight");
+      $('#mainContent').removeClass("rgba-black-slight");
+      $('#footerContent').removeClass("rgba-black-slight");
+    } else {
+      $('#background').addClass("rgba-black-slight");
+      $('#mainContent').addClass("rgba-black-slight");
+      $('#footerContent').addClass("rgba-black-slight");
+    }
+  });
+  
+</script>
+
+  <script type="text/javascript">
+    /*显示博客运行时间*/
+    var blogRunTime = function () {
+      var runTime = document.getElementById("runtime");
+      var runtimeDate = "2020,02,29";
+	    var createDate = new Date(runtimeDate);
+	    var nowDate = new Date();
+	    var dateLine = nowDate.getTime() - createDate.getTime();
+	    var runDate = Math.floor(dateLine / (1000 * 60 * 60 * 24));
+	    runTime.innerHTML = runDate;
+    };
+    $(document).ready(function(){
+	    blogRunTime();
+    });
+  </script>
+
+
+  <script type="text/javascript">
+    /*窗口监视*/
+    var originalTitle = document.title;
+    window.onblur = function(){document.title = "我心里只有感恩"};
+    window.onfocus = function(){document.title = originalTitle};
+  </script>
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+
+  
+</body>
+</html>
